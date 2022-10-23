@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "techtrends-del.fullname" . }}-test-connection"
+  labels:
+    {{- include "techtrends-del.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "techtrends-del.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never

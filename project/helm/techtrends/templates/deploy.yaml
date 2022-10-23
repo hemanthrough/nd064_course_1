@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "techtrends-del.labels" . | nindent 4 }}
+    app: techtrends
+    tag: techtrends
+  name: techtrends
+  namespace: {{.Values.namespace}}
+spec:
+  replicas: {{.Values.replicaCount}}
+  selector:
+    matchLabels:
+      app: techtrends
+      tag: techtrends
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: techtrends
+        tag: techtrends
+    spec:
+      containers:
+      - image: {{.Values.image.repository}}/{{.Values.image.image}}:{{.Values.image.tag}}
+        imagePullPolicy: {{.Values.imagePullPolicy}}
+        name: techtrends
+        ports:
+           - containerPort: {{.Values.containerPort}}
+        livenessProbe:
+            httpGet:
+              path: {{.Values.livenessProbe.path}}
+              port: {{.Values.containerPort}}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+        readinessProbe:
+            httpGet:
+              path: {{.Values.readinessProbe.path}}
+              port: {{.Values.containerPort}}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      imagePullSecrets:
+      - name: {{.Values.imagePullSecrets}} 
