@@ -34,7 +34,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            name/app
+            hemanthrough/techtrends
           tags: |
             type=ref,event=branch
             type=ref,event=pr
