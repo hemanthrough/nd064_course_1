@@ -1,0 +1,2 @@
+docker build -t techtrends .
+docker run -d -p 5000:3111 techtrends
