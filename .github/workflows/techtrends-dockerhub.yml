@@ -40,4 +40,4 @@ jobs:
           file: ./project/techtrends/Dockerfile
           platforms: linux/amd64
           push: true
-          tags: hemanthrough/python-helloworld:latest
+          tags: hemanthrough/techtrends:latest
