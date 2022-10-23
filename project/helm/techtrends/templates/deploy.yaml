@@ -33,13 +33,13 @@ spec:
         livenessProbe:
             httpGet:
               path: {{.Values.livenessProbe.path}}
-              port: {{.Values.containerPort}}
+              port: {{.Values.readinessProbe.port}}
             initialDelaySeconds: 5
             periodSeconds: 5
         readinessProbe:
             httpGet:
               path: {{.Values.readinessProbe.path}}
-              port: {{.Values.containerPort}}
+              port: {{.Values.readinessProbe.port}}
             initialDelaySeconds: 5
             periodSeconds: 5
       imagePullSecrets:
