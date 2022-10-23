@@ -1,11 +1,48 @@
 ## Docker commands used to build the application 
 # TODO: insert the docker build command
-
+docker build -t techtrends .
 ## Docker commands used to run the application
 # TODO: insert the docker run command
-
+docker run -d -p 7111:3111 techtrends
 ## Docker commands used to get the application logs
 # TODO: insert the docker logs command
-
+docker logs $(docker ps|grep techtrends |awk '{print $1}')
 ## Logs from the container running the TechTrends application
 # TODO: paste logs from the Docker container 
+
+\
+
+
+
+
+
+* Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
+[2022-10-22 23:11:06,459] INFO in app: Reached health endpoint
+[2022-10-22 23:11:06,460] INFO in app: Getting db connection
+172.17.0.1 - - [22/Oct/2022 23:11:06] "GET /healthz HTTP/1.1" 200 -
+[2022-10-22 23:11:11,941] INFO in app: getting all articles
+[2022-10-22 23:11:11,941] INFO in app: Getting db connection
+[2022-10-22 23:11:11,944] INFO in app: fetched 6 articles
+172.17.0.1 - - [22/Oct/2022 23:11:11] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [22/Oct/2022 23:11:12] "GET /static/css/main.css HTTP/1.1" 304 -
+[2022-10-22 23:11:15,097] INFO in app: Creating article
+172.17.0.1 - - [22/Oct/2022 23:11:15] "GET /create HTTP/1.1" 200 -
+172.17.0.1 - - [22/Oct/2022 23:11:15] "GET /static/css/main.css HTTP/1.1" 304 -
+[2022-10-22 23:11:20,508] INFO in app: Creating article
+[2022-10-22 23:11:20,511] INFO in app: Getting db connection
+172.17.0.1 - - [22/Oct/2022 23:11:20] "POST /create HTTP/1.1" 302 -
+[2022-10-22 23:11:20,699] INFO in app: getting all articles
+[2022-10-22 23:11:20,699] INFO in app: Getting db connection
+[2022-10-22 23:11:20,700] INFO in app: fetched 7 articles
+172.17.0.1 - - [22/Oct/2022 23:11:20] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [22/Oct/2022 23:11:20] "GET /static/css/main.css HTTP/1.1" 304 -
+[2022-10-22 23:11:28,861] INFO in app: Getting db connection
+[2022-10-22 23:11:28,862] INFO in app: Counting number of articles
+172.17.0.1 - - [22/Oct/2022 23:11:28] "GET /metrics HTTP/1.1" 200 -i
